@@ -9,9 +9,13 @@ on:
 jobs:
   printJob:    
     name: Event gollum
-    runs-on: ubuntu-latest
-    if: ${{((github.event_name == 'push' ) ) && ( github.ref == 'refs/heads/development' )}}
+    runs-on: ubuntu-latest 
     steps:
+    - uses: ./
+      id: has-changed-path
+      with:
+        paths: src/user-wiki/
+    - if: ${{((github.event_name == 'push' ) ) && ( github.ref == 'refs/heads/master' ) &&  steps.has-changed-path.outputs.changed == 'true'}}
     - name: Display payload
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
