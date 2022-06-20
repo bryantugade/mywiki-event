@@ -20,5 +20,5 @@ jobs:
       uses: sgefdf/action-teams-gollum-notification@v1.1
       env:
         # A webhook URL to a Teams channel you want notifications to be sent to.
-        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        WEBHOOK_URL: ${{ secrets.DEVSTACK_WEBHOOK_URL }}
   
