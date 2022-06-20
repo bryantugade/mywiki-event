@@ -5,23 +5,22 @@ name: On Gollum
 # Controls when the workflow will run
 on:
   gollum:
-
+   - paths: user-wiki
 jobs:
   printJob:    
     name: Event gollum
-    runs-on: ubuntu-latest
-    if: ${{(github.event_name == 'push' &&  github.ref_name == 'refs/heads/development' ) && (github.ref == 'refs/heads/master' )}}
+    runs-on: ubuntu-latest 
     steps: 
     - name: Display payload
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: |
         echo "$GITHUB_CONTEXT"
-    - name: Github Wiki notifications for Teams
-      uses: sgefdf/action-teams-gollum-notification@v1.1
-      env:
+  #  - name: Github Wiki notifications for Teams
+  #     uses: sgefdf/action-teams-gollum-notification@v1.1
+  #    env:
         # A webhook URL to a Teams channel you want notifications to be sent to.
-        WEBHOOK_URL: ${{ secrets.DEVSTACK_WEBHOOK_URL }}
+  #      WEBHOOK_URL: ${{ secrets.DEVSTACK_WEBHOOK_URL }}
     - name: Trigger pwsh
       run: |
         write-host "Trigger mo na si push file sa storage"
