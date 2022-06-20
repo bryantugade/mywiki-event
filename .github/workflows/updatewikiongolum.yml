@@ -10,6 +10,7 @@ jobs:
   printJob:    
     name: Event gollum
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/development'
     steps:
     - name: Display payload
       env:
@@ -21,4 +22,6 @@ jobs:
       env:
         # A webhook URL to a Teams channel you want notifications to be sent to.
         WEBHOOK_URL: ${{ secrets.DEVSTACK_WEBHOOK_URL }}
-  
+    - name: Trigger pwsh
+      run: |
+        write-host "Trigger mo na si push file sa storage"
