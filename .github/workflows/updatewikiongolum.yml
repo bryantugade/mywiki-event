@@ -5,12 +5,15 @@ name: On Gollum
 # Controls when the workflow will run
 on:
   gollum:
-   - paths: user-wiki
 jobs:
   printJob:    
     name: Event gollum
     runs-on: ubuntu-latest 
     steps: 
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        path : user-wiki
     - name: Display payload
       env:
         GITHUB_CONTEXT: ${{ toJson(github) }}
