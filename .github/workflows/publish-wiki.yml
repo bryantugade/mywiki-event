@@ -6,8 +6,7 @@ env:
 on:
   workflow_dispatch:
     inputs:
-      choice:
-        type: environment
+      environment: 
         description: Select the enviroment
         options:
         - d
@@ -19,10 +18,11 @@ jobs:
       - name: Check out wiki
         uses: actions/checkout@v2
         with:
-          repository: 
+          repository:  ${{repository}}
           ref: 'master'
           path: 'mywiki-event.wiki'
       - name: "Variable"
-        run: echo "Repository : $repository"
-             echo "Environment : $environment"
+        run: | 
+             echo `Repository :  ${{repository}}`
+             echo `Environment :  ${{ github.event.inputs.environment }}`
        
