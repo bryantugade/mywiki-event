@@ -6,7 +6,8 @@ env:
 on:
   workflow_dispatch:
     inputs:
-      environment: 
+      choice: 
+        type : environment
         description: Select the enviroment
         options:
         - d
