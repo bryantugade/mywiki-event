@@ -2,7 +2,7 @@ name: Admiral User Wiki Publish
 concurrency: admiral-publish-user-wiki
 
 env:
-  repository: user/mywiki-event.wiki'
+  repository: bryantugade/mywiki-event.wiki'
 on:
   workflow_dispatch:
     inputs:
