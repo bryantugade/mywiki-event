@@ -2,7 +2,7 @@ name: Admiral User Wiki Publish
 concurrency: admiral-publish-user-wiki
 
 env:
-  repository: ${{ github.server_url }}/${{ github.repository }}/mywiki-event.wiki.git'
+  repository: ${{ github.repository }}/mywiki-event.wiki.git'
 on:
   workflow_dispatch:
     inputs:
