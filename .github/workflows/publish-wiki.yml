@@ -19,11 +19,11 @@ jobs:
       - name: Check out wiki
         uses: actions/checkout@v2
         with:
-          repository:  ${{repository}}
+          repository:  ${{env.repository}}
           ref: 'master'
           path: 'mywiki-event.wiki'
       - name: "Variable"
         run: | 
-             echo `Repository :  ${{repository}}`
+             echo `Repository :  ${{env.repository}}`
              echo `Environment :  ${{ github.event.inputs.environment }}`
        
