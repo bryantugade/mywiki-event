@@ -26,8 +26,8 @@ jobs:
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with: 
-        file: target/release/mything
-        asset_name: mything
+        file: bryantugade/mywiki-event/user-wiki/user-wiki.zip
+        asset_name: user-wiki
         tag: ${{ github.ref }}
         overwrite: true
         body: "This is my release text"
