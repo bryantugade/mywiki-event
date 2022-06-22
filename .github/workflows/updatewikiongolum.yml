@@ -6,13 +6,6 @@ name: On Gollum
 on:
   gollum:
   workflow_dispatch :
-    inputs:
-        environment:
-          type : choice
-          description: Select the enviroment
-          options:
-          - d
-          - p
 jobs:
   publish-dev:
     name: Event gollum
@@ -38,10 +31,9 @@ jobs:
         write-host "Trigger mo na si push file sa dev storage"
         write-host "${{ toJSON(github.event.inputs) }}"
   publish-prod:
+    if: github.event_name == 'workflow_dispatch'
     name: Publish wiki to Prod
-    runs-on: ubuntu-latest 
-    if: |
-      ${{ (github.event_name == 'workflow_dispatch')}}
+    runs-on: ubuntu-latest  
     steps:
     - uses: actions/checkout@v2
       with:
