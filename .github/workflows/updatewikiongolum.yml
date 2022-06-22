@@ -28,6 +28,7 @@ jobs:
       with:
         artifacts: 'user-wiki.zip'
         repo: 'bryantugade/mywiki-event'
+        ref: 'main'
         name: 'user-wiki'
  publish-dev:
     if: ${{!github.event_name == 'workflow_dispatch'}}
