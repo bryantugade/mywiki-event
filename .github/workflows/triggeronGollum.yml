@@ -1,0 +1,12 @@
+name: trigger on gollum
+
+on:
+  workflow_dispatch
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh workflow run updatewikiongolum.yml
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
