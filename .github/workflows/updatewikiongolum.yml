@@ -5,6 +5,14 @@ name: On Gollum
 # Controls when the workflow will run
 on:
   gollum:
+  workflow_dispatch :
+    inputs:
+        environment: 
+          type : choice
+          description: Select the enviroment
+          options:
+          - d
+          - p
 jobs:
   printJob:    
     name: Event gollum
