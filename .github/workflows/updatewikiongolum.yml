@@ -5,30 +5,30 @@ name: Publish Wiki
 # Controls when the workflow will run
 on:
   gollum:
-  workflow_dispatch :
-  
+  workflow_dispatch :  
 jobs:
  zip-files:
   runs-on: ubuntu-latest
   steps: 
     - name: Check out wiki
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
       with:
           repository: 'bryantugade/mywiki-event.wiki'
           ref: 'master'
           path: 'bryantugade/mywiki-event' 
-    - uses: vimtor/action-zip@v1
+    - name: Archive Release
+      uses: thedoctor0/zip-release@main
       with:
-          files: user-wiki/
-          recursive : true
-          dest: user-wiki.zip
-    - uses: actions/upload-artifact@v2
+        type: 'zip'
+        filename: 'release.zip'
+        path: 'user-wiki'
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
       with:
-         repository: 'bryantugade/mywiki-event'
-         name: wiki-artifact
-         path: bryantugade/mywiki-event/user-wiki.zip
+        artifacts: "release.zip"
+        repo: 'bryantugade/mywiki-event'
  publish-dev:
-    if: github.event_name == 'workflow_dispatch'
+    if: ${{!github.event_name == 'workflow_dispatch'}}
     name: Zip and Publish to Dev
     runs-on: ubuntu-latest
     steps:
@@ -52,7 +52,7 @@ jobs:
         write-host "Trigger mo na si push file sa dev storage"
         write-host "${{ toJSON(github.event.inputs) }}"
  publish-prod:
-    if: github.event_name == 'workflow_dispatch'
+    if: ${{github.event_name == 'workflow_dispatch'}}
     name: Zip and Publish to Prod
     runs-on: ubuntu-latest  
     steps:
