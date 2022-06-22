@@ -23,14 +23,14 @@ jobs:
         filename: 'user-wiki.zip'
         path: 'bryantugade/mywiki-event/user-wiki/'
         recursive: true
-    - name: Upload Release
-      uses: ncipollo/release-action@v1
-      with:
-        artifacts: 'user-wiki.zip'
-        repo: 'bryantugade/mywiki-event'
-        tag: 'main'
-        name: 'user-wiki'
-        commit: 'main'
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with: 
+        file: target/release/mything
+        asset_name: mything
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: "This is my release text"
  publish-dev:
     if: ${{!github.event_name == 'workflow_dispatch'}}
     name: Zip and Publish to Dev
