@@ -20,12 +20,15 @@ jobs:
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
-        filename: 'user-wiki.zip' 
+        filename: 'user-wiki.zip'
+        path: 'bryantugade/mywiki-event/user-wiki/'
+        recursive: true
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "user-wiki.zip"
+        artifacts: 'user-wiki.zip'
         repo: 'bryantugade/mywiki-event'
+        name: 'user-wiki'
  publish-dev:
     if: ${{!github.event_name == 'workflow_dispatch'}}
     name: Zip and Publish to Dev
