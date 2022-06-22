@@ -30,6 +30,7 @@ jobs:
         repo: 'bryantugade/mywiki-event'
         tag: 'main'
         name: 'user-wiki'
+        commit: 'main'
  publish-dev:
     if: ${{!github.event_name == 'workflow_dispatch'}}
     name: Zip and Publish to Dev
