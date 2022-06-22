@@ -7,7 +7,6 @@ on:
   gollum:
   workflow_dispatch :
     inputs:
-        environment:
           type : choice
           description: Select the enviroment
           options:
