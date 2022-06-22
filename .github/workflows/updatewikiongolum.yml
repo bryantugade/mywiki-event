@@ -14,7 +14,7 @@ on:
           - d
           - p
 jobs:
-  printJob:
+  publish-dev:
     name: Event gollum
     runs-on: ubuntu-latest
     steps:
@@ -35,5 +35,20 @@ jobs:
     - name: Trigger pwsh
       shell: pwsh
       run: |
-        write-host "Trigger mo na si push file sa storage"
+        write-host "Trigger mo na si push file sa dev storage"
+        write-host "${{ toJSON(github.event.inputs) }}"
+  publish-prod:
+    name: Publish wiki to Prod
+    runs-on: ubuntu-latest 
+    if: |
+      ${{ (github.event_name == 'workflow_dispatch')
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        path : user-wiki
+    - name: Trigger pwsh
+      shell: pwsh
+      run: |
+        write-host "Trigger mo na si push file sa prod storage"
         write-host "${{ toJSON(github.event.inputs) }}"
