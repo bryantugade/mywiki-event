@@ -7,17 +7,17 @@ on:
   gollum:
   workflow_dispatch :
     inputs:
-        environment: 
+        environment:
           type : choice
           description: Select the enviroment
           options:
           - d
           - p
 jobs:
-  printJob:    
+  printJob:
     name: Event gollum
-    runs-on: ubuntu-latest 
-    steps: 
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -33,5 +33,7 @@ jobs:
         # A webhook URL to a Teams channel you want notifications to be sent to.
   #      WEBHOOK_URL: ${{ secrets.DEVSTACK_WEBHOOK_URL }}
     - name: Trigger pwsh
+      shell: pwsh
       run: |
         write-host "Trigger mo na si push file sa storage"
+        write-host "${{ toJSON(github.event.inputs) }}"
