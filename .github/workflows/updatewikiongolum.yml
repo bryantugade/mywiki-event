@@ -20,8 +20,7 @@ jobs:
       uses: thedoctor0/zip-release@main
       with:
         type: 'zip'
-        filename: 'user-wiki.zip'
-        path: 'user-wiki'
+        filename: 'user-wiki.zip' 
     - name: Upload Release
       uses: ncipollo/release-action@v1
       with:
